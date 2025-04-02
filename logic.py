@@ -32,8 +32,10 @@ FULLSCREN_MENU_Y = 306
 FULL_DURATION = 1 
 
 
+IN_ALLOWED = False 
+
 BLUESTACKS_PATH = r"C:\Program Files\BlueStacks_nxt\HD-Player.exe --instance Tiramisu64"
-PACK_PATH       = r"D:\a\master\master\apk\Haganboy.apk"
+PACK_PATH       = r"D:\a\master\master\downloads\Haganboy.apk"
 WINDOW_TITLE = "BlueStacks App Player"
 PACK_NAME = "com.elnimr.haganboy"
 
@@ -50,7 +52,7 @@ APP_STORE = "com.android.vending"
 APP_GMS = "com.google.android.gms"
 READ_UI_WAIT_TIME = 1
 DEBUG = True 
-IN_ALLOWED = True 
+
 
 autoSignIn = True 
 clear_screen_timer = 0 
@@ -129,4 +131,4 @@ while True :
                         if node.attrib.get("text")  == "Close" : 
                             close  = True
                             close_bound = node.attrib.get("bounds")
-           
+  
