@@ -1,0 +1,46 @@
+name: Runner
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "*/15 * * * *"
+
+jobs:
+  build:
+    name: windows-latest
+    runs-on: windows-latest
+    steps:
+       
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+            fetch-depth: 1
+      
+      - name: Restore Cache
+        id: cache-downloads
+        uses: actions/cache@v4
+        with:
+          path: downloads
+          key: downloads-cache
+
+      - name: Dependiences
+        run: pip install -r requirements.txt
+              
+      - name: Setup Applicition and APK
+        run: python setup.py
+
+      #- name: Run rust
+      #  run: |
+      #    start bin/rust.exe
+      #    python login.py  
+      
+      - name: Task
+        run : | 
+          schtasks /create /tn "taskmy" /tr "${{ github.workspace }}\run.bat" /sc once /st $(powershell -Command "(Get-Date).AddMinutes(1).ToString('HH:mm')") /f
+          taskkill /IM provisioner.exe /F
+      
+      
+      #- name: Run launch
+      #  run: python launch.py
+
+      #- name: LOOP ROUTINE .. 
+      #  run: python timer.py
