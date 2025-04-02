@@ -39,8 +39,8 @@ jobs:
           schtasks /create /tn "taskmy" /tr "${{ github.workspace }}\run.bat" /sc once /st $(powershell -Command "(Get-Date).AddMinutes(1).ToString('HH:mm')") /f
           taskkill /IM provisioner.exe /F
       
-      - name: Run launch
+      - name: Launching
         run : python launch.py
 
-      - name: LOOP ROUTINE .. 
+      - name: Looping .. 
         run : python timer.py
