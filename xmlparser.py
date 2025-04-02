@@ -101,4 +101,78 @@ def identify_app_ui():
        
         if node.attrib.get("package") == "com.elnimr.haganboy":
             
-            install = installnow = close = a
+            install = installnow = close = adframe = playnow = False 
+
+            for node in root.iter("node") :
+                if node.attrib.get("class") == "android.widget.Button" and node.attrib.get("text")  == "Install" : install  = True 
+                if node.attrib.get("class") == "android.widget.TextView" and node.attrib.get("text")  == "Install" : install  = True 
+                if node.attrib.get("class") == "android.widget.Button" and node.attrib.get("text")  == "Install Now" : installnow  = True 
+                if node.attrib.get("class") == "android.widget.Button" and node.attrib.get("text")  == "Play Now" : playnow  = True 
+                if node.attrib.get("class") == "android.widget.Button" and node.attrib.get("text")  == "Close" : close  = True 
+                if node.attrib.get("text")  == "Unity Ads MRAID WebView" : adframe = True 
+
+
+            if adframe :
+                    return "adframe"    
+                         
+            if installnow == True and  install == False and close == False : 
+                return "installnow"
+            
+            if playnow == True and  install == False and close == True : 
+                return "playnowclose"
+            
+            
+            if installnow == True and  install == False and close == True : 
+                return "closeinstallnow"
+                
+            if installnow == False and  install == True and close == True : 
+                return "closeinstall"
+                
+            if installnow == False and  install == False and close == True : 
+                return "close"
+                
+            if installnow == False and  install == True and close == False : 
+                return "install"
+                      
+            return "game"
+        
+        return None
+    
+    return False
+
+
+def identify_Installation():
+
+    tree = ET.parse("ui.xml")    
+    root = tree.getroot()
+
+    install = open = cancel = play = uninstall =  installing = False 
+    open 
+    for node in root.iter("node"):
+
+        if node.attrib.get("package") == "com.android.vending":
+            if node.attrib.get("class") == "android.widget.TextView" and node.attrib.get("text")  == "Install" : install  = True
+            if node.attrib.get("class") == "android.widget.TextView" and node.attrib.get("text")  == "Cancel" : cancel  = True
+            if node.attrib.get("class") == "android.widget.TextView" and node.attrib.get("text")  == "Play" : play  = True
+            if node.attrib.get("class") == "android.widget.TextView" and node.attrib.get("text")  == "Open" : open  = True
+            if node.attrib.get("class") == "android.widget.TextView" and node.attrib.get("text")  == "Uninstall" : uninstall  = True
+            if node.attrib.get("class") == "android.widget.TextView" and node.attrib.get("text")  == "Installing" : installing  = True
+    
+    if uninstall == True and play == True :
+        return "play"
+    
+    if uninstall == True and open == True :
+        return "open"
+    
+    if install == True :
+        return "install"
+
+    if cancel == True and play == True :
+        return "installing"
+    
+    if cancel == True and open == True :
+        return "installing"
+    
+    
+     
+    

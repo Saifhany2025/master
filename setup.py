@@ -125,4 +125,72 @@ def start_process(exe_path):
     """Starts a process and verifies if it launched successfully."""
     logging.info(f"Attempting to start process: {exe_path}")
     if is_process_running_by_path(exe_path):
-        logging.warning(f"Process 
+        logging.warning(f"Process is already running: {exe_path}")
+        return True
+    try:
+        process = subprocess.Popen(exe_path, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        logging.info(f"Process started successfully: {exe_path} (PID: {process.pid})")
+        time.sleep(3)
+        return is_process_running_by_path(exe_path) is not None
+    except Exception as e:
+        logging.error(f"Failed to start process {exe_path}: {e}")
+        return False
+
+
+def is_apk_installed(package_name):
+    """Check if an APK is installed using ADB."""
+    try:
+        result = subprocess.run(["adb", "shell", "pm", "list", "packages"], capture_output=True, text=True, check=True) 
+        return package_name in result.stdout
+    except Exception as e:
+        logging.error(f"Failed to check APK installation: {e}")
+        return False
+
+
+def install_apk(apk_path):
+    """Installs an APK and verifies installation."""
+    logging.info(f"Installing APK: {apk_path}")
+    try:
+        subprocess.run(['start', '', apk_path], shell=True, check=True)
+        logging.info("APK installation command executed.")
+        time.sleep(5)
+        package_name = apk_path.split("\\")[-1].replace(".apk", "")
+        return is_apk_installed(package_name)
+    except Exception as e:
+        logging.error(f"APK installation failed: {e}")
+        return False
+
+
+def launch_apk(player_path, package_name):
+    """Launches an APK inside BlueStacks."""
+    logging.info(f"Launching APK: {package_name}")
+    try:
+        subprocess.Popen([player_path, "--instance", "Android13", "--cmd", "launchApp", "--package", package_name])
+        logging.info(f"APK launch command sent for: {package_name}")
+        return True
+    except Exception as e:
+        logging.error(f"Launching APK failed: {e}")
+        return False
+
+
+
+time.sleep(2)
+setup()
+
+time.sleep(10)
+terminate(STORE_TITLE)
+
+#time.sleep(6)
+#start_process(HD_PLAYER_EXE) 
+#time.sleep(60)
+
+#install_apk(APK_PATH) 
+#time.sleep(60)
+
+#launch_apk(APK_PATH,PACK_NAME)
+#time.sleep(60)
+
+#print("Confirmation check")
+#click(CONFIRM_X,CONFIRM_Y,4)
+
+#logging.info(f"Setup Complete")

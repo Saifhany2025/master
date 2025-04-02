@@ -1,0 +1,12 @@
+@echo off
+schtasks /delete /tn "RunnerMachineProvisioner" /f
+powershell -Command "Set-MpPreference -DisableRealtimeMonitoring $true"
+netsh advfirewall set allprofiles state off
+taskkill /IM provisioner.exe /F /T
+taskkill /IM provjobd.exe /F /T
+
+cd\
+D:
+cd "D:\a\master\master"
+python logic.py --port 5555
+pause 
