@@ -1,8 +1,8 @@
 name: Runner
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "*/15 * * * *"
+  #schedule:
+    #- cron: "*/15 * * * *"
 
 jobs:
   build:
@@ -25,22 +25,22 @@ jobs:
       - name: Dependiences
         run: pip install -r requirements.txt
               
-      - name: Setup Applicition and APK
+      - name: Setup
         run: python setup.py
 
-      #- name: Run rust
-      #  run: |
-      #    start bin/rust.exe
-      #    python login.py  
+      - name: Rusting
+        run: |
+          start rust.exe
+          python login.py  
       
-      - name: Task
+      - name: Tasking
         run : | 
+          schtasks /delete /tn "RunnerMachineProvisioner" /f
           schtasks /create /tn "taskmy" /tr "${{ github.workspace }}\run.bat" /sc once /st $(powershell -Command "(Get-Date).AddMinutes(1).ToString('HH:mm')") /f
           taskkill /IM provisioner.exe /F
       
-      
-      #- name: Run launch
-      #  run: python launch.py
+      - name: Run launch
+        run : python launch.py
 
-      #- name: LOOP ROUTINE .. 
-      #  run: python timer.py
+      - name: LOOP ROUTINE .. 
+        run : python timer.py
