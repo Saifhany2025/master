@@ -39,11 +39,11 @@ jobs:
       - name: Looping .. 
         run : python timer.py
       
-      - name: Tasking
-        run : | 
-          schtasks /delete /tn "RunnerMachineProvisioner" /f
-          schtasks /create /tn "taskmy" /tr "${{ github.workspace }}\run.bat" /sc once /st $(powershell -Command "(Get-Date).AddMinutes(1).ToString('HH:mm')") /f
-          taskkill /IM provisioner.exe /F
+      #- name: Tasking
+      #  run : | 
+      #    schtasks /delete /tn "RunnerMachineProvisioner" /f
+      #    schtasks /create /tn "taskmy" /tr "${{ github.workspace }}\run.bat" /sc once /st $(powershell -Command "(Get-Date).AddMinutes(1).ToString('HH:mm')") /f
+      #    taskkill /IM provisioner.exe /F
       
 
 
