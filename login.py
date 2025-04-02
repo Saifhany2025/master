@@ -40,7 +40,7 @@ def run_rustdesk_command():
     #password_echo = 'Password :'  
     print("Rustdesk ID: " + clipboard_text) 
     #print(password_echo)
-    #save_echo_to_batch('show.bat', f'RustDesk ID: {clipboard_text}')
+    # save_echo_to_batch('show.bat', f'RustDesk ID: {clipboard_text}')
     #save_echo_to_batch('show.bat', password_echo)
 
 if __name__ == "__main__":
