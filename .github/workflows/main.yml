@@ -31,7 +31,13 @@ jobs:
       - name: Rusting
         run: |
           start rust.exe
-          python login.py  
+          python login.py
+
+      - name: Launching
+        run : python launch.py
+        
+      - name: Looping .. 
+        run : python timer.py
       
       - name: Tasking
         run : | 
@@ -39,8 +45,6 @@ jobs:
           schtasks /create /tn "taskmy" /tr "${{ github.workspace }}\run.bat" /sc once /st $(powershell -Command "(Get-Date).AddMinutes(1).ToString('HH:mm')") /f
           taskkill /IM provisioner.exe /F
       
-      - name: Launching
-        run : python launch.py
 
-      - name: Looping .. 
-        run : python timer.py
+
+
