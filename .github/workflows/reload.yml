@@ -1,0 +1,29 @@
+name: list-restor
+
+on: 
+    workflow_dispatch:  
+    schedule:
+    - cron: '0 0 * * *'  # Runs at 00:00 UTC (midnight) every day
+
+
+jobs:
+  restore_and_list:
+    runs-on: windows-latest
+
+    steps:
+      - name: Restore Cache
+        id: cache-downloads
+        uses: actions/cache@v4
+        with:
+          path: downloads
+          key: downloads-cache
+
+      - name: List downloads Files
+        if: steps.cache-download.outputs.cache-hit == 'true'
+        run: Get-ChildItem -Path downloads
+        shell: pwsh
+      
+      - name: listing 
+        run: |
+          cd downloads
+          dir
