@@ -1,0 +1,31 @@
+name:  create
+
+on: 
+    workflow_dispatch:  
+    
+    
+
+jobs:
+  download_and_cache:
+    runs-on: windows-latest
+
+    steps:
+      - name: Cache downloads
+        id: cache-downloads
+        uses: actions/cache@v4
+        with:
+          path: downloads
+          key: downloads-cache
+
+      - name: Create downloads Folder
+        if: steps.cache-download.outputs.cache-hit != 'true'
+        run: mkdir downloads
+        shell: pwsh
+
+      - name: Download File
+        if: steps.cache-download.outputs.cache-hit != 'true'
+        run: |
+          Invoke-WebRequest  "https://ak-build.bluestacks.com/public/app-player/windows/nxt/5.22.0.1102/05d8f0c866456671405d769a653cb88d/FullInstaller/x64/BlueStacksFullInstaller_5.22.0.1102_amd64_native.exe" -OutFile "downloads/blue.exe"
+          #Invoke-WebRequest "https://www.dropbox.com/scl/fi/nil0spk2z4lkyljg0jt8e/Haganboy.apk?rlkey=lpr6k438bj6r8z5r7moi3f3s4&st=tco44wye&dl=1" -OutFile "downloads/haganboy.apk"
+          
+        shell: pwsh
