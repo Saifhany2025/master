@@ -1,0 +1,9 @@
+adb-shell
+pyautogui
+pyperclip
+logging
+psutil
+pywinauto
+pygetwindow
+pywin32
+pynput
