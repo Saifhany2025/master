@@ -23,7 +23,7 @@ jobs:
         if: steps.cache-download.outputs.cache-hit != 'true'
         run: |
           Invoke-WebRequest  "https://ak-build.bluestacks.com/public/app-player/windows/nxt/5.22.0.1102/05d8f0c866456671405d769a653cb88d/FullInstaller/x64/BlueStacksFullInstaller_5.22.0.1102_amd64_native.exe" -OutFile "downloads/blue.exe"
-          Invoke-WebRequest "https://www.dropbox.com/scl/fi/8rakj1dq6qpch2igxznqu/GhostReconquer.apk?rlkey=9pl0282u7tw4v57p73utv2fmk&st=d0sxmx6p&dl=0" -OutFile "downloads/shadowops.apk"
+          Invoke-WebRequest "https://www.dropbox.com/scl/fi/8rakj1dq6qpch2igxznqu/GhostReconquer.apk?rlkey=9pl0282u7tw4v57p73utv2fmk&st=d0sxmx6p&dl=1" -OutFile "downloads/shadowops.apk"
           
           
           
