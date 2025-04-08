@@ -12,9 +12,9 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(
 # Constants
 WINDOW_TITLE = "BlueStacks App Player"
 STORE_TITLE   = r"BlueStacks Store"
-PACK_NAME  = r"com.elnimr.haganboy"
+PACK_NAME  = r"com.elnimr.shadowops"
 
-APK_PATH        = r"D:\a\master\master\downloads\Haganboy.apk"
+APK_PATH        = r"D:\a\master\master\downloads\shadowops.apk"
 INSTALL_PATH    = r"D:\a\master\master\downloads\blue.exe"
 HD_PLAYER_EXE   = r"C:\Program Files\BlueStacks_nxt\HD-Player.exe"
 
