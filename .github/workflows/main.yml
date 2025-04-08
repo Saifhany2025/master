@@ -33,11 +33,25 @@ jobs:
           start rust.exe
           python login.py
 
-      - name: Launching
-        run : python launch.py
+      #- name: Launching
+      #  run : python launch.py
         
       - name: Looping .. 
         run : python timer.py
+
+      - name: Set date/time as env var
+        id: date
+        run: |
+          echo "cache_key=bs-data-cache-$(Get-Date -Format yyyyMMdd-HHmmss)" >> $env:GITHUB_ENV
+
+      - name: Show the cache key (for debug)
+        run: echo "Cache Key is ${{ env.cache_key }}"
+
+      - name: Save ProgramData to cache
+        uses: actions/cache@v4
+        with:
+          path: C:\ProgramData\BlueStacks_nxt
+          key: ${{ env.cache_key }}
       
       #- name: Tasking
       #  run : | 
