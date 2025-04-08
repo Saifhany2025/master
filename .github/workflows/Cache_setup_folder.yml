@@ -1,0 +1,39 @@
+name: Cache Setup-folder
+on:
+  workflow_dispatch:
+  #schedule:
+    #- cron: "*/15 * * * *"
+jobs:
+  build:
+    name: windows-latest
+    runs-on: windows-latest
+    steps:       
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+            fetch-depth: 1
+      
+      - name: Restore Cache
+        id: cache-downloads
+        uses: actions/cache@v4
+        with:
+          path: downloads
+          key: downloads-cache
+
+      - name: Dependiences
+        run: pip install -r requirements.txt
+              
+      - name: Setup
+        run: python setup.py
+        
+      - name: waitin 10s 
+        run :  Start-Sleep -Seconds 10
+        
+      - name: Caching Setup Data
+        uses: actions/cache@v4
+        with:
+          path: C:\Program Files\BlueStacks_nxt
+          key: setup-cache 
+
+
+
