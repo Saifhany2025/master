@@ -1,0 +1,22 @@
+name: list-data
+
+on: 
+    workflow_dispatch:  
+
+jobs:
+  restore_and_list:
+    runs-on: windows-latest
+
+    steps:
+      - name: Restore Cache
+        id: cache-data
+        uses: actions/cache@v4
+        with:
+          path: C:\ProgramData\BlueStacks_nxt
+          key: bs-data-cache-20250408-084440
+
+      
+      - name: listing 
+        run: |
+          cd C:\ProgramData\BlueStacks_nxt
+          dir
