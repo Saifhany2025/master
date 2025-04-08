@@ -1,4 +1,4 @@
-name: Runner-Cashed
+name: Runner-All-Cashed
 on:
   workflow_dispatch:
   #schedule:
