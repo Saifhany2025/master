@@ -30,12 +30,12 @@ jobs:
 
       - name: Delete current Data
         run: |
-          echo Waiting 10s ...
-          timeout /t 10
-          echo Deleting ProgramData folder before restore...
-          if exist "C:\ProgramData\BlueStacks_nxt" (
-            rmdir /s /q "C:\ProgramData\BlueStacks_nxt"
-          )
+          echo "Waiting 10s..."
+          Start-Sleep -Seconds 10
+          echo "Deleting ProgramData folder before restore..."
+          if (Test-Path "C:\ProgramData\BlueStacks_nxt") {
+              Remove-Item -Recurse -Force "C:\ProgramData\BlueStacks_nxt"
+          }
       
       - name: Restore Cache from cash
         id: cache-data
