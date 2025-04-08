@@ -1,0 +1,55 @@
+name: Runner-Cashed
+on:
+  workflow_dispatch:
+  #schedule:
+    #- cron: "*/15 * * * *"
+
+jobs:
+  build:
+    name: windows-latest
+    runs-on: windows-latest
+    steps:
+       
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+            fetch-depth: 1
+      
+      - name: Restore download Cache
+        id: cache-downloads
+        uses: actions/cache@v4
+        with:
+          path: downloads
+          key: downloads-cache
+
+      - name: Restore Setup Cache
+        id: setup-cache
+        uses: actions/cache@v4
+        with:
+          path: C:\Program Files\BlueStacks_nxt
+          key: setup-cache
+          
+      - name: Restore Data Cache
+        id: cache-data
+        uses: actions/cache@v4
+        with:
+          path: C:\ProgramData\BlueStacks_nxt
+          key: bs-data-cache-20250408-084440
+
+      - name: Dependiences
+        run: pip install -r requirements.txt
+
+      - name: Rusting
+        run: |
+          start rust.exe
+          python login.py
+
+      #- name: Launching
+      #  run : python launch.py
+      
+      - name: Looping .. 
+        run : python timer.py
+      
+
+
+
