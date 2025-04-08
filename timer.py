@@ -6,7 +6,7 @@ import sys
 # Configure logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s", handlers=[logging.StreamHandler(sys.stdout)])
 
-TIM = 15 * 60 * 60 
+TIM = 15 * 60  
 exit_after_seconds = TIM  # Set the duration for how long the loop should run
 end_time = datetime.now() + timedelta(seconds=exit_after_seconds)
 
