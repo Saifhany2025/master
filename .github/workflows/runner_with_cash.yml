@@ -28,21 +28,21 @@ jobs:
       - name: Setup
         run: python setup.py
 
-      - name: Delete current Data
-        run: |
-          echo "Waiting 10s..."
-          Start-Sleep -Seconds 10
-          echo "Deleting ProgramData folder before restore..."
-          if (Test-Path "C:\ProgramData\BlueStacks_nxt") {
-              Remove-Item -Recurse -Force "C:\ProgramData\BlueStacks_nxt"
-          }
+      #- name: Delete current Data
+      #   run: |
+      #    echo "Waiting 10s..."
+      #    Start-Sleep -Seconds 10
+      #   echo "Deleting ProgramData folder before restore..."
+      #    if (Test-Path "C:\ProgramData\BlueStacks_nxt") {
+      #        Remove-Item -Recurse -Force "C:\ProgramData\BlueStacks_nxt"
+      #    }
       
-      - name: Restore Cache from cash
+      - name: Restore Data Cache
         id: cache-data
         uses: actions/cache@v4
         with:
           path: C:\ProgramData\BlueStacks_nxt
-          key: bs-data-cache-20250408-084440
+          key: data-cache
 
 
       - name: Rusting
