@@ -1,4 +1,4 @@
-name:  create
+name:  create downloads cache
 on: 
     workflow_dispatch:      
 
