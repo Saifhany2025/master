@@ -1,4 +1,4 @@
-name: list-restor
+name: list download cache
 
 on: 
     workflow_dispatch:  
