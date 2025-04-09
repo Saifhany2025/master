@@ -1,4 +1,4 @@
-name:  create downloads cache
+name:  Create Cownloads Cache
 on: 
     workflow_dispatch:      
 
