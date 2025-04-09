@@ -1,4 +1,4 @@
-name: list download cache
+name: List Download Cache
 
 on: 
     workflow_dispatch:  
