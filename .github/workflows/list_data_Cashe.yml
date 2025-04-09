@@ -1,4 +1,4 @@
-name: list-data
+name: list-data-cache
 
 on: 
     workflow_dispatch:  
